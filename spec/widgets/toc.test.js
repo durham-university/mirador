@@ -1,6 +1,7 @@
 
 describe('Table of Contents', function() {
   beforeEach(function(){
+    /*
     jasmine.getJSONFixtures().fixturesPath = 'spec/fixtures';
 
     this.eventEmitter = new Mirador.EventEmitter();
@@ -14,7 +15,7 @@ describe('Table of Contents', function() {
     // this.realisticV21 = {},
 
     this.sandbox = sandbox();
-
+*/
   });
 
   afterEach(function() {
@@ -22,7 +23,7 @@ describe('Table of Contents', function() {
 
   describe('Initialisation', function(){
 
-    it('should render a table of contents element', function() {
+    xit('should render a table of contents element', function() {
       var testToc = new Mirador.TableOfContents({
         structures: this.v1SimpleStructures.structures,
         manifestVersion: '1',
@@ -36,7 +37,7 @@ describe('Table of Contents', function() {
       expect(testToc.structures.length).toEqual(2);
     });
 
-    it('should assign a range ID to toc link elements', function() {
+    xit('should assign a range ID to toc link elements', function() {
       var testToc = new Mirador.TableOfContents({
         structures: this.v1SimpleStructures.structures,
         manifestVersion: '1',
@@ -50,7 +51,7 @@ describe('Table of Contents', function() {
       expect(this.sandbox.find('.toc-link').first().data().rangeid).toBe('http://www.example.org/iiif/book1/range/r2.json');
     });
 
-    it('should render an empty template if there are no structures', function(){
+    xit('should render an empty table if there are no strcutures', function(){
       var testToc = new Mirador.TableOfContents({
         structures: [],
         appendTo: this.sandbox,
@@ -63,7 +64,7 @@ describe('Table of Contents', function() {
       expect(this.sandbox.find('h2 span')).toContainText('No index available');
     });
 
-    it('should set tocData with a cached element for each range', function() {
+    xit('should set tocData with a cached element for each range', function() {
       var testToc = new Mirador.TableOfContents({
         structures: this.v1SimpleStructures.structures,
         manifestVersion: '1',
@@ -90,7 +91,7 @@ describe('Table of Contents', function() {
 
     });
 
-    it('should return an HTML element from the structures (v1.0)', function() {
+    xit('should return a tree of ranges from the structures (v1.0)', function() {
       var testToc = new Mirador.TableOfContents({
         structures: this.v1SimpleStructures.structures,
         manifestVersion: '1',

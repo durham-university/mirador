@@ -28,6 +28,7 @@ module.exports = function(grunt) {
     'js/lib/bootbox.js',
     'js/lib/jquery.scrollTo.min.js',
     'js/lib/jquery.qtip.min.js',
+    'js/lib/jstree.min.js',
     'js/lib/state-machine.min.js',
     'js/lib/tinymce.min.js',
     'js/lib/handlebars.js',

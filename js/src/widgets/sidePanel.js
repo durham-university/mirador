@@ -80,11 +80,10 @@
 
       if (this.tocTabAvailable) {
         new $.TableOfContents({
-          structures: this.manifest.getStructures(),
+          manifest: this.manifest,
           appendTo: this.element.find('.tabContentArea'),
           windowId: this.windowId,
           canvasID: this.canvasID,
-          manifestVersion: this.manifest.getVersion(),
           eventEmitter: this.eventEmitter
         });
       }

@@ -23,6 +23,7 @@
     "jquery": "https://code.jquery.com/jquery-3.1.1.min.js",
     "jquery-ui": "*",
     "jquery.scrollTo": "~1.4.12",
+    "jstree":  "~3.3.1",
     "mousetrap": "~1.4.6",
     "URIjs": "https://github.com/medialize/URI.js.git#~1.13.2",
     "paper": "git://github.com/paperjs/paper.js.git#*",

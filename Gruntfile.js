@@ -94,7 +94,8 @@ module.exports = function(grunt) {
           'css/jquery.qtip.min.css',
           'css/spectrum.css',
           'css/mirador.css',
-          'css/material-icons.css'
+          'css/material-icons.css',
+          'css/jstree.min.css'
         ],
         dest: 'build/mirador/css/mirador-combined.css'
       }

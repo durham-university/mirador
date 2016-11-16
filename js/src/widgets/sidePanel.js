@@ -84,6 +84,7 @@
           appendTo: this.element.find('.tabContentArea'),
           windowId: this.windowId,
           canvasID: this.canvasID,
+          endpointConfig: this.state.getStateProperty("tocEndpoint"),
           eventEmitter: this.eventEmitter
         });
       }

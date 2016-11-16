@@ -142,6 +142,7 @@
     },
     getStructures: function() {
       var _this = this;
+      if(!_this.jsonLd.structures) _this.jsonLd.structures = [];
       return _this.jsonLd.structures;
     },
     generateInfoWrapper: function(infoJson) {

@@ -144,6 +144,7 @@
     },
 
     handleDrop: function(url) {
+        if (this.window) return;
         var _this = this;
 
         url = url || text_url;

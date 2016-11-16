@@ -15,7 +15,9 @@
       windowId:             null,
       panel:                false,
       lazyLoadingFactor:    1.5,  //should be >= 1
-      eventEmitter:         null
+      eventEmitter:         null,
+      multiSelectEnabled:   true,
+      draggable:            true
     }, options);
 
     this.init();
@@ -121,10 +123,55 @@
 
       //add any other events that would trigger thumbnail display (resize, etc)
 
-      _this.element.find('.thumbnail-image').on('click', function() {
+      _this.element.find('.thumbnail-image').on('click', function(event) {
         var canvasID = jQuery(this).attr('data-image-id');
-        _this.eventEmitter.publish('SET_CURRENT_CANVAS_ID.' + _this.windowId, canvasID);
+        if (event.shiftKey && _this.multiSelectEnabled) {
+          _this.highlightTo(canvasID);
+        }
+        else {
+          _this.eventEmitter.publish('SET_CURRENT_CANVAS_ID.' + _this.windowId, canvasID);
+        }
       });
+      
+      if (_this.draggable) {
+        _this.element.find('.thumbnail-image').attr('draggable','true');
+        _this.element.find('.thumbnail-image').on('dragstart', function(event) {
+          var selectedIds = _this.element.find("img.thumbnail-image.highlight").map(function(index,img){ return jQuery(img).attr('data-image-id'); });
+          selectedIds = jQuery.makeArray( selectedIds ).join('\n');
+          event.originalEvent.dataTransfer.setData("text/plain", selectedIds);
+        });
+      }
+    },
+
+    highlightTo: function(canvasId) {
+      var toItem = this.element.find("img[data-image-id='"+canvasId+"']");
+      if (toItem.length === 0 || toItem.hasClass('highlight')) return;
+
+      var selectedListItems = this.element.find("img.thumbnail-image.highlight");
+      if (selectedListItems.length === 0) {
+        this.updateFocusImages([canvasId]);
+      }
+      else {
+        var firstSelectedId = jQuery(selectedListItems[0]).attr('data-image-id');
+        var lastSelectedId = jQuery(selectedListItems[selectedListItems.length-1]).attr('data-image-id');
+        if (canvasId == firstSelectedId || canvasId == lastSelectedId) return;
+        var selected = [];
+        for(var i=0;i<this.imagesList.length;i++){
+          var id = this.imagesList[i]['@id'];
+          if (selected.length === 0) {
+            if (id == firstSelectedId) selected.push(id);
+            else if (id == canvasId) {
+              selected.push(id);
+              canvasId = lastSelectedId;
+            }
+          }
+          else {
+            selected.push(id);
+            if (id == canvasId) break;
+          }
+        }
+        this.updateFocusImages(selected);
+      }
     },
 
     toggle: function(stateValue) {

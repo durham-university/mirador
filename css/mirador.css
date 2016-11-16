@@ -832,12 +832,12 @@ li.highlight {
   color: black;
   padding: 8px;
   padding-left: 8px;
-  display: block;
+  display: inline-block;
 }
 .toc a.toc-link:hover {
   cursor: pointer;
   background-color: #dddddd;
-  display:block;
+  display:inline-block;
   overflow:hidden;
 }
 .toc ul {
@@ -891,17 +891,12 @@ li.highlight {
   color:black;
 }
 .toc li.jstree-open>a.toc-link .toc-caret  {
-  transition: all 0.2s linear;
-  transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  /* Internet Explorer */
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 .toc li.selected-parent {
 
+}
+.toc li {
+  border-left: 4px solid transparent;
 }
 .toc li.hovered {
   border-left: 4px solid deepSkyblue;
@@ -915,16 +910,74 @@ li.highlight {
 .toc li:hover>a.toc-link {
   font-weight: bold;
 }
-.toc ul .toc-link { font-size: 1.6em; }
-.toc ul ul .toc-link { font-size: 1.3em; }
-.toc ul ul ul .toc-link { font-size: 1.0em; }
-.toc ul ul ul ul .toc-link { font-size: 1.0em; }
+.toc ul .jstree-node { font-size: 1.6em; }
+.toc ul ul .jstree-node { font-size: 0.8em; }
+.toc ul ul ul .jstree-node { font-size: 0.8em; }
+.toc ul ul ul ul .jstree-node { font-size: 0.8em; }
 
 .toc .jstree-anchor>.jstree-themeicon {
   margin-right: 5px;
 }
 
-/*
+
+.toc li.jstree-node>.jstree-ocl{
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 8px 4px;
+}
+.toc li.jstree-node>.jstree-ocl:before {
+  content: "\f0da";
+  opacity: 0.5;
+}
+.toc li.jstree-node.jstree-leaf {
+  color: transparent;
+}
+.toc li.jstree-node.jstree-open>.jstree-ocl {
+  transition: all 0.2s linear;
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);  
+}
+
+.toc-tools {
+  font-size: 1.5em;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #ccc;
+}
+.toc-tools .tool-icon {
+  opacity: 0.6;
+  cursor: pointer;
+  margin-right: 8px;
+  display: inline;
+  transition: opacity 0.3s ease;
+  -webkit-transition: opacity 0.3s ease;
+}
+.toc.editing .toc-tools>.edit-icon {
+  opacity: 1.0;
+}
+
+.toc .toc-tools>.toc-edit-tools>.tool-icon {
+  opacity: 0.0;
+  cursor: auto;
+}
+.toc.editing .toc-tools>.toc-edit-tools>.tool-icon {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.toc .toc-tools>.edit-icon:hover, .toc.editing .toc-tools>.tool-icon:hover {
+  opacity: 1.0;
+}
+
+/* 
 .toc li:hover > h2 a {
   font-weight: bold;
 }
